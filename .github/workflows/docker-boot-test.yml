@@ -1,0 +1,24 @@
+name: Docker boot test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  hydradb-round-trip:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run HydraDB and HydraShield round trip
+        run: bash scripts/docker_boot_test.sh
+      - name: Upload container logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hydrashield-docker-logs
+          path: /tmp/hydrashield-docker-boot.log
+          if-no-files-found: ignore
+

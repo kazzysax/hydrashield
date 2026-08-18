@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07110f">
+  <title>HydraShield — Supply-chain blast radius</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="noise"></div>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="HydraShield home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40"><path d="M20 3 34 11v18L20 37 6 29V11Z"/><path d="m14 16 6-4 6 4v8l-6 4-6-4Z"/></svg>
+      </span>
+      <span>HYDRA<span>SHIELD</span></span>
+    </a>
+    <div class="system-status"><span class="pulse"></span><span id="backendLabel">HYDRADB GRAPH ONLINE</span></div>
+    <div class="top-actions">
+      <button class="ghost-button" id="resetButton">Replay incident</button>
+      <div class="avatar">KS</div>
+    </div>
+  </header>
+
+  <aside class="sidebar">
+    <nav aria-label="Primary navigation">
+      <a class="nav-item active" href="#overview"><span class="nav-icon">⌁</span><span>Incident</span></a>
+      <a class="nav-item" href="#graph"><span class="nav-icon">⌘</span><span>Attack graph</span></a>
+      <a class="nav-item" href="#evidence"><span class="nav-icon">≋</span><span>Evidence</span></a>
+      <a class="nav-item" href="#remediation"><span class="nav-icon">✓</span><span>Remediation</span></a>
+    </nav>
+    <div class="sidebar-foot">
+      <span>Powered by</span>
+      <strong>HydraDB OSS</strong>
+      <small>OpenCypher · GraphBLAS</small>
+    </div>
+  </aside>
+
+  <main>
+    <section class="hero" id="overview">
+      <div>
+        <div class="eyebrow"><span>ACTIVE INCIDENT</span><span class="incident-id" id="advisoryId">—</span></div>
+        <h1>Supply-chain blast radius</h1>
+        <p id="advisorySummary">Loading verified graph evidence…</p>
+      </div>
+      <div class="time-card">
+        <span>TIME TO ANSWER</span>
+        <strong id="queryTime">—</strong>
+        <small>Exact traversal · 12 hops max</small>
+      </div>
+    </section>
+
+    <section class="metrics" aria-label="Incident summary">
+      <article class="metric danger">
+        <span class="metric-label">EXPOSED APPLICATIONS</span>
+        <strong id="exposedCount">—</strong>
+        <span class="metric-foot"><b id="productionCount">—</b> in production</span>
+      </article>
+      <article class="metric">
+        <span class="metric-label">TRANSITIVE EXPOSURE</span>
+        <strong id="transitiveCount">—</strong>
+        <span class="metric-foot"><b id="directCount">—</b> direct</span>
+      </article>
+      <article class="metric">
+        <span class="metric-label">VERIFIED PATHS</span>
+        <strong id="pathCount">—</strong>
+        <span class="metric-foot verified">● Evidence complete</span>
+      </article>
+      <article class="metric accent">
+        <span class="metric-label">MINIMUM UPGRADES</span>
+        <strong id="upgradeCount">—</strong>
+        <span class="metric-foot">to eliminate all paths</span>
+      </article>
+    </section>
+
+    <section class="workspace-grid">
+      <article class="panel graph-panel" id="graph">
+        <div class="panel-head">
+          <div><span class="panel-kicker">LIVE GRAPH</span><h2>Compromise propagation</h2></div>
+          <div class="legend"><span><i class="dot app-dot"></i>Application</span><span><i class="dot dep-dot"></i>Dependency</span><span><i class="dot bad-dot"></i>Compromised</span></div>
+        </div>
+        <div id="graphCanvas" class="graph-canvas" role="img" aria-label="Dependency attack path graph"></div>
+        <div class="timeline">
+          <div class="timeline-line"><span id="timelineProgress"></span></div>
+          <button class="time-point active" data-step="0"><b>08:59</b><small>Clean graph</small></button>
+          <button class="time-point" data-step="1"><b>09:00</b><small>Compromise</small></button>
+          <button class="time-point" data-step="2"><b>09:02</b><small>Traversal</small></button>
+          <button class="time-point" data-step="3"><b>09:06</b><small>Contained</small></button>
+        </div>
+      </article>
+
+      <aside class="panel exposure-panel" id="evidence">
+        <div class="panel-head">
+          <div><span class="panel-kicker">PRIORITIZED</span><h2>Affected applications</h2></div>
+          <button class="icon-button" aria-label="Filter">≡</button>
+        </div>
+        <div id="exposureList" class="exposure-list"></div>
+      </aside>
+    </section>
+
+    <section class="panel remediation-panel" id="remediation">
+      <div class="panel-head">
+        <div><span class="panel-kicker">COUNTERFACTUAL ANALYSIS</span><h2>Minimum remediation plan</h2></div>
+        <span class="verified-badge">GRAPH VERIFIED</span>
+      </div>
+      <div id="remediationList" class="remediation-list"></div>
+    </section>
+  </main>
+
+  <dialog id="evidenceDialog">
+    <button class="dialog-close" id="dialogClose" aria-label="Close">×</button>
+    <span class="panel-kicker">HYDRADB EVIDENCE PATH</span>
+    <h2 id="dialogTitle">Exposure evidence</h2>
+    <p id="dialogSubtitle"></p>
+    <div id="dialogPath" class="dialog-path"></div>
+    <div class="proof-box"><span>PROOF MODE</span><strong>Every claim is backed by an exact graph path.</strong><small>No dependency path means no exposure claim.</small></div>
+  </dialog>
+
+  <div class="toast" id="toast">Incident replay complete</div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
+

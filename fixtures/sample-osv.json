@@ -1,0 +1,14 @@
+{
+  "id": "GHSA-HYDRA-2026-0001",
+  "summary": "Credential exfiltration through a compromised post-install hook",
+  "published": "2026-08-18T09:00:00Z",
+  "database_specific": {"severity": "CRITICAL"},
+  "affected": [
+    {
+      "package": {"ecosystem": "npm", "name": "package-x"},
+      "versions": ["3.2.1"]
+    }
+  ],
+  "references": [{"type": "ADVISORY", "url": "https://osv.dev/"}]
+}
+
