@@ -25,8 +25,8 @@ fi
 mkdir -p hydradb-data/store hydradb-data/cache
 printf '%s\n' 'local-development-token-32-bytes' > hydradb-data/auth-token
 
-export UID="$(id -u)"
-export GID="$(id -g)"
+export HOST_UID="$(id -u)"
+export HOST_GID="$(id -g)"
 
 docker compose pull hydradb
 docker compose build app
@@ -98,4 +98,3 @@ print(json.dumps({
     "graph_counts": counts,
 }, indent=2))
 PY
-

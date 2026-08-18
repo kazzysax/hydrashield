@@ -1,7 +1,7 @@
 services:
   hydradb:
     image: ghcr.io/hydra-db/hydradb:latest
-    user: "${UID:-1000}:${GID:-1000}"
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
     ports:
       - "7687:7687"
       - "8443:8443"
